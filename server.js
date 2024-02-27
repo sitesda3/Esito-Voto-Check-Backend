@@ -70,8 +70,13 @@ async function fetchData(codicePersonale, password) {
   );
   const page = await browser.newPage();
   await page.goto(url, { waitUntil: "domcontentloaded" });
+  
+  await page.waitForSelector("#login");
   await page.type("#login", await codicePersonale);
+
+  await page.waitForSelector("#password");
   await page.type("#password", await password);
+
   await Promise.all([
     page.waitForNavigation({ waitUntil: "domcontentloaded" }),
     page.click(".accedi"),
