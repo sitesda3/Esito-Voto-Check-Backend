@@ -42,6 +42,11 @@ app.post("/process", async (req, res) => {
 });
 
 const PORT = process.env.PORT || 3000;
+
+app.get("/", (req, res) => {
+  res.send("Render server runnin!!");
+});
+
 app.listen(PORT, () => {
   console.log(`Server started on port ${PORT}`);
 });
