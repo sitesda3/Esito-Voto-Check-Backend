@@ -44,7 +44,7 @@ app.post("/process", async (req, res) => {
 const PORT = process.env.PORT || 3000;
 
 app.get("/", (req, res) => {
-  res.send("Render server running!!!");
+  res.send("Render server running test!!");
 });
 
 app.listen(PORT, () => {
@@ -71,8 +71,7 @@ async function fetchData(codicePersonale, password) {
   const page = await browser.newPage();
   await page.goto(url, { waitUntil: "domcontentloaded" });
   
-  await page.waitForSelector("#login").then(()=>{
-     page.type("#login", await codicePersonale)});
+  await page.waitForSelector("#login").then(() => page.type("#login", codicePersonale));
 
   await page.waitForSelector("#password");
   await page.type("#password", await password);
