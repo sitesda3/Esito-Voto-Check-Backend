@@ -5,7 +5,7 @@ const app = express();
 const path = require("path");
 
 app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "http://127.0.0.1:5500");
+  res.setHeader("Access-Control-Allow-Origin", "https://miniature-potato-6xw6j945qvc566w-5500.app.github.dev/");
   res.setHeader(
     "Access-Control-Allow-Methods",
     "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS,CONNECT,TRACE"
@@ -71,8 +71,8 @@ async function fetchData(codicePersonale, password) {
   const page = await browser.newPage();
   await page.goto(url, { waitUntil: "domcontentloaded" });
   
-  await page.waitForSelector("#login");
-  await page.type("#login", await codicePersonale);
+  await page.waitForSelector("#login").then(()=>{
+     page.type("#login", await codicePersonale)});
 
   await page.waitForSelector("#password");
   await page.type("#password", await password);
@@ -123,3 +123,5 @@ async function fetchData(codicePersonale, password) {
 
   return data;
 }
+
+
