@@ -73,8 +73,6 @@ async function fetchData(codicePersonale, password) {
   
   await page.waitForSelector("#login")
 
-75
-
 await page.type("#login", await codicePersonale);
 
   await page.waitForSelector("#password");
