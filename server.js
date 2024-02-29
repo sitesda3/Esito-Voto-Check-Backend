@@ -126,13 +126,13 @@ async function fetchData(codicePersonale, password) {
   await page.waitForTimeout(1000);
 
   await page.screenshot({
-    path: "./screenshot.jpg",
+    path: "./screenshot2.jpg",
   });
   console.log("screenshot fatto");
 
-  await page.waitForSelector("#login");
-  await page.type("#login", await codicePersonale);
-  console.log("codice personale inserito");
+  // await page.waitForSelector("#login");
+  // await page.type("#login", await codicePersonale);
+  console.log("codice personale saltato");
 
   await page.waitForSelector("#password");
   await page.type("#password", await password);
