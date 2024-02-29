@@ -4,6 +4,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
 const path = require("path");
+const userAgent = require("user-agents");
 
 puppeteer.use(StealthPlugin());
 
@@ -56,6 +57,9 @@ app.listen(PORT, () => {
   console.log(`Server started on port ${PORT}`);
 });
 
+const USER_AGENT =
+  "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36";
+
 async function fetchData(codicePersonale, password) {
   const url = "https://web.spaggiari.eu/cvv/app/default/genitori_voti.php";
   const browser = await puppeteer.launch(
@@ -74,18 +78,49 @@ async function fetchData(codicePersonale, password) {
     }
   );
   const page = await browser.newPage();
+  const newUserAgent = userAgent.random().toString();
+  const UA = newUserAgent || USER_AGENT;
+
+  //Randomize viewport size
+  await page.setViewport({
+    width: 1920 + Math.floor(Math.random() * 100),
+    height: 3000 + Math.floor(Math.random() * 100),
+    deviceScaleFactor: 1,
+    hasTouch: false,
+    isLandscape: false,
+    isMobile: false,
+  });
+
+  await page.setUserAgent(UA);
+  await page.setJavaScriptEnabled(true);
+  await page.setDefaultNavigationTimeout(0);
+
+  //Skip images/styles/fonts loading for performance
+  await page.setRequestInterception(true);
+  page.on("request", (req) => {
+    if (
+      req.resourceType() == "stylesheet" ||
+      req.resourceType() == "font" ||
+      req.resourceType() == "image"
+    ) {
+      req.abort();
+    } else {
+      req.continue();
+    }
+  });
+
   await page.goto(url, { waitUntil: "domcontentloaded" });
 
   // Add Headers
-  await page.setExtraHTTPHeaders({
-    "user-agent":
-      "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36",
-    "upgrade-insecure-requests": "1",
-    accept:
-      "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8",
-    "accept-encoding": "gzip, deflate, br",
-    "accept-language": "en-US,en;q=0.9,en;q=0.8",
-  });
+  // await page.setExtraHTTPHeaders({
+  //   "user-agent":
+  //     "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36",
+  //   "upgrade-insecure-requests": "1",
+  //   accept:
+  //     "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8",
+  //   "accept-encoding": "gzip, deflate, br",
+  //   "accept-language": "en-US,en;q=0.9,en;q=0.8",
+  // });
 
   await page.waitForSelector("#login");
   await page.type("#login", await codicePersonale);
