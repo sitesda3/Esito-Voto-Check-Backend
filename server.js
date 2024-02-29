@@ -4,7 +4,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
 const path = require("path");
-const userAgent = require("user-agents");
+// const userAgent = require("user-agents");
 
 puppeteer.use(StealthPlugin());
 
@@ -57,10 +57,11 @@ app.listen(PORT, () => {
   console.log(`Server started on port ${PORT}`);
 });
 
-const USER_AGENT =
-  "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36";
+// const USER_AGENT =
+//   "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36";
 
 async function fetchData(codicePersonale, password) {
+  console.log("Entrato in fetchData");
   const url = "https://web.spaggiari.eu/cvv/app/default/genitori_voti.php";
   const browser = await puppeteer.launch(
     { headless: "new" },
@@ -78,8 +79,9 @@ async function fetchData(codicePersonale, password) {
     }
   );
   const page = await browser.newPage();
-  const newUserAgent = userAgent.random().toString();
-  const UA = newUserAgent || USER_AGENT;
+  console.log("page creata");
+  // const newUserAgent = userAgent.random().toString();
+  // const UA = newUserAgent || USER_AGENT;
 
   //Randomize viewport size
   await page.setViewport({
@@ -91,7 +93,17 @@ async function fetchData(codicePersonale, password) {
     isMobile: false,
   });
 
-  await page.setUserAgent(UA);
+  // Add Headers
+  await page.setExtraHTTPHeaders({
+    "user-agent":
+      "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36",
+    "upgrade-insecure-requests": "1",
+    accept:
+      "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8",
+    "accept-encoding": "gzip, deflate, br",
+    "accept-language": "en-US,en;q=0.9,en;q=0.8",
+  });
+
   await page.setJavaScriptEnabled(true);
   await page.setDefaultNavigationTimeout(0);
 
@@ -110,23 +122,16 @@ async function fetchData(codicePersonale, password) {
   });
 
   await page.goto(url, { waitUntil: "domcontentloaded" });
-
-  // Add Headers
-  // await page.setExtraHTTPHeaders({
-  //   "user-agent":
-  //     "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36",
-  //   "upgrade-insecure-requests": "1",
-  //   accept:
-  //     "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8",
-  //   "accept-encoding": "gzip, deflate, br",
-  //   "accept-language": "en-US,en;q=0.9,en;q=0.8",
-  // });
+  await page.waitForTimeout(1000);
+  console.log("pagina caricata");
 
   await page.waitForSelector("#login");
   await page.type("#login", await codicePersonale);
+  console.log("codice personale inserito");
 
   await page.waitForSelector("#password");
   await page.type("#password", await password);
+  console.log("password inserita");
 
   await Promise.all([
     page.waitForNavigation({ waitUntil: "domcontentloaded" }),
