@@ -59,7 +59,7 @@ app.listen(PORT, () => {
 async function fetchData(codicePersonale, password) {
   const url = "https://web.spaggiari.eu/cvv/app/default/genitori_voti.php";
   const browser = await puppeteer.launch(
-    { headless: false },
+    { headless: "new" },
     {
       args: [
         "--disable-setuid-sandbox",
