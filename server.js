@@ -122,8 +122,13 @@ async function fetchData(codicePersonale, password) {
   });
 
   await page.goto(url, { waitUntil: "domcontentloaded" });
-  await page.waitForTimeout(1000);
   console.log("pagina caricata");
+  await page.waitForTimeout(1000);
+
+  await page.screenshot({
+    path: "./screenshot.jpg",
+  });
+  console.log("screenshot fatto");
 
   await page.waitForSelector("#login");
   await page.type("#login", await codicePersonale);
