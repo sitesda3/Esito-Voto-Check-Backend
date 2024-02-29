@@ -47,6 +47,11 @@ app.post("/process", async (req, res) => {
 });
 
 const PORT = process.env.PORT || 3000;
+
+app.get("/", (req, res) => {
+  res.send("Render Puppeteer server is up and running!");
+});
+
 app.listen(PORT, () => {
   console.log(`Server started on port ${PORT}`);
 });
@@ -54,7 +59,7 @@ app.listen(PORT, () => {
 async function fetchData(codicePersonale, password) {
   const url = "https://web.spaggiari.eu/cvv/app/default/genitori_voti.php";
   const browser = await puppeteer.launch(
-    { headless: "new" },
+    { headless: false },
     {
       args: [
         "--disable-setuid-sandbox",
@@ -70,6 +75,17 @@ async function fetchData(codicePersonale, password) {
   );
   const page = await browser.newPage();
   await page.goto(url, { waitUntil: "domcontentloaded" });
+
+  // Add Headers
+  await page.setExtraHTTPHeaders({
+    "user-agent":
+      "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36",
+    "upgrade-insecure-requests": "1",
+    accept:
+      "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8",
+    "accept-encoding": "gzip, deflate, br",
+    "accept-language": "en-US,en;q=0.9,en;q=0.8",
+  });
 
   await page.waitForSelector("#login");
   await page.type("#login", await codicePersonale);
