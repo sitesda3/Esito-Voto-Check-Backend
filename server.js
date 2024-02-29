@@ -1,11 +1,14 @@
-const puppeteer = require("puppeteer");
+const puppeteer = require("puppeteer-extra");
+const StealthPlugin = require("puppeteer-extra-plugin-stealth");
 const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
 const path = require("path");
 
+puppeteer.use(StealthPlugin());
+
 app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "https://miniature-potato-6xw6j945qvc566w-5500.app.github.dev/");
+  res.setHeader("Access-Control-Allow-Origin", "http://127.0.0.1:5500");
   res.setHeader(
     "Access-Control-Allow-Methods",
     "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS,CONNECT,TRACE"
@@ -21,6 +24,8 @@ app.use((req, res, next) => {
 
   next();
 });
+
+app.use(express.static(path.join(__dirname, "public")));
 
 app.use(bodyParser.json());
 
@@ -42,11 +47,6 @@ app.post("/process", async (req, res) => {
 });
 
 const PORT = process.env.PORT || 3000;
-
-app.get("/", (req, res) => {
-  res.send("Render server running test!!");
-});
-
 app.listen(PORT, () => {
   console.log(`Server started on port ${PORT}`);
 });
@@ -70,10 +70,9 @@ async function fetchData(codicePersonale, password) {
   );
   const page = await browser.newPage();
   await page.goto(url, { waitUntil: "domcontentloaded" });
-  
-  await page.waitForSelector("#login")
 
-await page.type("#login", await codicePersonale);
+  await page.waitForSelector("#login");
+  await page.type("#login", await codicePersonale);
 
   await page.waitForSelector("#password");
   await page.type("#password", await password);
@@ -124,5 +123,3 @@ await page.type("#login", await codicePersonale);
 
   return data;
 }
-
-
