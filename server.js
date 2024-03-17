@@ -49,7 +49,7 @@ app.post("/process", async (req, res) => {
 const PORT = process.env.PORT || 3000;
 
 app.get("/", (req, res) => {
-  res.send("Render Puppeteer server is up and running!");
+  res.send("Render Puppeteer server is up and running!!");
 });
 
 app.listen(PORT, () => {
@@ -67,7 +67,7 @@ async function fetchData(codicePersonale, password) {
         "--no-sandbox",
         "--single-process",
         "--no-zygote",
-        "--proxy-server=http://163.5.159.107:3128",
+        "--proxy-server=http://86.48.0.127:3128",
       ],
       executablePath:
         process.env.NODE_ENV === "production"
