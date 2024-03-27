@@ -54,15 +54,11 @@ console.log("start fetchData");
 
         await page.goto('https://www.google.com', {waitUntil: 'networkidle2'});
 
-        // Login by Fill User / Password
-        //await page.type('#Email', email);
-        //await page.type('#Password', password);
-        //await page.$eval('button[type=submit]', el => el.click());
-        //await page.waitForNetworkIdle({idleTime: idelTime});
+
 
         const screenshot = await page.screenshot();
+      console.log('screenshot done');
   await browser.close();
-    console.log('screenshot done');
         res.end(screenshot, 'binary');
       return;
 
