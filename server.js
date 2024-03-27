@@ -96,8 +96,8 @@ console.log("start fetchData");
         const screenshot = await page.screenshot();
   await browser.close();
     console.log('screenshot done');
-        res.send(screenshot, 'binary');
-      //return;
+        res.end(screenshot, 'binary');
+      return;
 
 
   
