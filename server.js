@@ -22,7 +22,6 @@ app.get("/", async (req, res) => {
 
 
 
-console.log("start fetchData");
   const url = "https://www.google.com";
   const browser = await puppeteer.launch(
     { headless: "new" },
@@ -40,8 +39,10 @@ console.log("start fetchData");
           : puppeteer.executablePath(),
     }
   );
+  
+console.log("browser is launched");
   const page = await browser.newPage();
-  console.log("page creata");
+  console.log("page is created");
 
   //Randomize viewport size
   await page.setViewport({
@@ -54,12 +55,12 @@ console.log("start fetchData");
   });
 
 
-await page.goto(url);//, {waitUntil: 'networkidle2'}
-  await page.waitForTimeout(5000);
+await page.goto(url, {waitUntil: 'networkidle2'});//
+  //await page.waitForTimeout(5000);
 
 
         const screenshot = await page.screenshot();
-      console.log('screenshot done');
+      console.log('taking screenshot is done');
   await browser.close();
         res.end(screenshot, 'binary');
       return;
