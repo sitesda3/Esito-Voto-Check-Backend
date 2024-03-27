@@ -49,7 +49,7 @@ app.post("/process", async (req, res) => {
 const PORT = process.env.PORT || 3000;
 
 app.get("/", async (req, res) => {
-  res.send("Render Puppeteer server is up and running!!");
+  //res.send("Render Puppeteer server is up and running!!");
 
 
 
@@ -95,8 +95,8 @@ console.log("start fetchData");
 
         const screenshot = await page.screenshot();
     console.log('screenshot done');
-        res.end(screenshot, 'binary');
-      return;
+        res.send(screenshot, 'binary');
+      //return;
 
 
   
