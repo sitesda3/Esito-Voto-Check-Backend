@@ -29,8 +29,8 @@ console.log("start fetchData");
         "--disable-setuid-sandbox",
         "--no-sandbox",
         "--single-process",
-        "--no-zygote",
-        "--proxy-server=http://86.48.0.127:3128",
+        "--no-zygote"
+        //"--proxy-server=http://86.48.0.127:3128",
       ],
       executablePath:
         process.env.NODE_ENV === "production"
