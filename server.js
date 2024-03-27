@@ -91,9 +91,10 @@ console.log("start fetchData");
         //await page.type('#Email', email);
         //await page.type('#Password', password);
         //await page.$eval('button[type=submit]', el => el.click());
-        await page.waitForNetworkIdle({idleTime: idelTime});
+        //await page.waitForNetworkIdle({idleTime: idelTime});
 
         const screenshot = await page.screenshot();
+  await browser.close();
     console.log('screenshot done');
         res.send(screenshot, 'binary');
       //return;
