@@ -52,8 +52,8 @@ console.log("start fetchData");
   });
 
 
-        await page.goto('https://www.google.com', {waitUntil: 'networkidle2'});
-
+await page.goto('https://bot.sannysoft.com', {waitUntil: 'networkidle2'})
+  await page.waitForTimeout(5000);
 
 
         const screenshot = await page.screenshot();
