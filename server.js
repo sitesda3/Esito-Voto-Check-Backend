@@ -21,7 +21,7 @@ app.get("/", async (req, res) => {
 
 
 console.log("start fetchData");
-  const url = "https://www.google.com/";
+  const url = "https://bot.sannysoft.com";
   const browser = await puppeteer.launch(
     { headless: "new" },
     {
@@ -52,7 +52,7 @@ console.log("start fetchData");
   });
 
 
-await page.goto('https://bot.sannysoft.com');//, {waitUntil: 'networkidle2'}
+await page.goto(url);//, {waitUntil: 'networkidle2'}
   await page.waitForTimeout(5000);
 
 
