@@ -23,7 +23,7 @@ app.get("/", async (req, res) => {
 
 
 console.log("start fetchData");
-  const url = "https://bot.sannysoft.com";
+  const url = "https://www.google.com";
   const browser = await puppeteer.launch(
     { headless: "new" },
     {
