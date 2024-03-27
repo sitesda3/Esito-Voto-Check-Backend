@@ -14,7 +14,9 @@ puppeteer.use(StealthPlugin());
 app.use(bodyParser.json());
 
 const PORT = process.env.PORT || 3000;
-
+app.listen(PORT, () => {
+  console.log(`Server started on port ${PORT}`);
+});
 app.get("/", async (req, res) => {
   //res.send("Render Puppeteer server is up and running!!");
 
