@@ -48,13 +48,13 @@ app.post("/process", async (req, res) => {
 
 const PORT = process.env.PORT || 3000;
 
-app.get("/", (req, res) => {
+app.get("/", async (req, res) => {
   res.send("Render Puppeteer server is up and running!!");
 
 
 
 console.log("start fetchData");
-  const url = "https://web.spaggiari.eu/cvv/app/default/genitori_voti.php";
+  const url = "https://www.google.com/";
   const browser = await puppeteer.launch(
     { headless: "new" },
     {
