@@ -98,21 +98,28 @@ const cluster = await Cluster.launch(clusterLanuchOptions);
     await page.goto(url, {waitUntil: 'networkidle2'});
     const screenshot = await page.screenshot();
       console.log('taking screenshot is done');
-  await browser.close();
+  //await browser.close();
 
 
 
     //res.statusCode = 200;
     //res.setHeader("Content-Type", "image/png");
-    console.log("res.end(screenshot)");
-        res.end(screenshot, 'binary');
-      return;
-	  
+    //console.log("res.end(screenshot)");
+    //res.end(screenshot, 'binary');
+      return screenshot;	  
   });
 
-  cluster.queue('http://www.wikipedia.org/');
+  //cluster.queue('http://www.wikipedia.org/');
   // many more pages
-
+try {
+const result = await cluster.execute('https://www.google.com');
+	    console.log("res.end(screenshot)");
+        res.end(result, 'binary');
+    } catch (err) {
+	console.log("screenshot ERROR:",err);
+        res.end('SCREENSHOT ERROR');
+        // Handle crawling error
+    }		 
   await cluster.idle();
   await cluster.close();
 
