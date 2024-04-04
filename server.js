@@ -1,6 +1,6 @@
 //const puppeteer = require("puppeteer-extra");
 //const StealthPlugin = require("puppeteer-extra-plugin-stealth");
-const { Cluster } = require('puppeteer-cluster');
+const { Cluster } = require("puppeteer-cluster");
 const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
