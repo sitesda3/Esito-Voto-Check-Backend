@@ -145,8 +145,8 @@ const cluster = await Cluster.launch(clusterLanuchOptions);
 console.log("Get Request");
   await cluster.task(async ({ page, data: url }) => {
 	  console.log("Starting cluster task");
-    await page.goto(url, {waitUntil: 'networkidle2'});//networkidle2
-	  //load(11),domcontentloaded(7sec),networkidle0(11),networkidle2
+    await page.goto(url, {waitUntil: 'domcontentloaded'});//networkidle2
+	  //load(11),domcontentloaded(7sec),networkidle0(11),networkidle2(11)
 	  console.log('taking screenshot');
     const screenshot = await page.screenshot();
       console.log('taking screenshot is done');
