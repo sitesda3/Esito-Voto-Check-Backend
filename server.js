@@ -116,7 +116,7 @@ const cluster = await Cluster.launch(clusterLanuchOptions);
   //cluster.queue('http://www.wikipedia.org/');
   // many more pages
 try {
-const result = await cluster.execute('https://www.google.com');
+const result = await cluster.execute('https://github.com/');
 	    console.log("res.end(screenshot)");
         res.end(result, 'binary');
     } catch (err) {
