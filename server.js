@@ -135,7 +135,11 @@ app.get("/test", async (req, res) => {
 
 
 
-
+if(!cluster){
+	console.log("cluster is not defined");
+const cluster = await Cluster.launch(clusterLanuchOptions);
+	console.log("Lanuch Cluster");
+}
 
 
 console.log("call link");
