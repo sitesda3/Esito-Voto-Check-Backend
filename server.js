@@ -145,7 +145,8 @@ const cluster = await Cluster.launch(clusterLanuchOptions);
 console.log("call link");
   await cluster.task(async ({ page, data: url }) => {
 	  console.log("start cluster task");
-    await page.goto(url, {waitUntil: 'networkidle2'});
+    await page.goto(url, {waitUntil: 'domcontentloaded'});//networkidle2
+	  //load,domcontentloaded,networkidle0,networkidle2
     const screenshot = await page.screenshot();
       console.log('taking screenshot is done');
   //await browser.close();
@@ -165,6 +166,7 @@ try {
 const result = await cluster.execute('https://github.com/');
 	    console.log("res.end(screenshot)");
         res.end(result, 'binary');
+	console.log("screenshot is sent");
     } catch (err) {
 	console.log("screenshot ERROR:",err);
         res.end('SCREENSHOT ERROR');
