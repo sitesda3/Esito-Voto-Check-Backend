@@ -125,7 +125,7 @@ const cluster = await Cluster.launch(clusterLanuchOptions);
     maxConcurrency: 2,
   });*/
 
- })();
+
 
 
 app.get("/test", async (req, res) => {
@@ -183,5 +183,5 @@ const result = await cluster.execute('https://github.com/');
 });
 
 
-
+ })();
 
