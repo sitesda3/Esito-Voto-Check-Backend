@@ -172,10 +172,12 @@ const result = await cluster.execute('https://github.com/');
 	console.log("screenshot ERROR:",err);
         res.end('SCREENSHOT ERROR');
         // Handle crawling error
-    }		 
+    }
+	console.log("Closing cluster");
   await cluster.idle();
   await cluster.close();
-
+	console.log("Cluster is closed");
+return;
 
 
   
