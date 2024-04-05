@@ -21,12 +21,6 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server started on port ${PORT}`);
 });
-app.get("/test", async (req, res) => {
-  //res.send("Render Puppeteer server is up and running!!");
-
-
-
-
 
 
 
@@ -136,6 +130,20 @@ const cluster = await Cluster.launch(clusterLanuchOptions);
     maxConcurrency: 2,
   });*/
 
+
+
+
+app.get("/test", async (req, res) => {
+  //res.send("Render Puppeteer server is up and running!!");
+
+
+
+
+
+
+
+
+console.log("call link");
   await cluster.task(async ({ page, data: url }) => {
 	  console.log("start cluster task");
     await page.goto(url, {waitUntil: 'networkidle2'});
