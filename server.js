@@ -32,10 +32,10 @@ const launchOptions = {
     //waitUntil: 'networkidle2',
     timeout: 0,
     defaultViewport:{
-        width: 1920,
-        height: 1080
-        //width: 640,
-        //height: 480
+        //width: 1920,
+        //height: 1080
+        width: 640,
+        height: 480
     },
     /*args: [
         '--disable-gpu',
@@ -145,8 +145,8 @@ const cluster = await Cluster.launch(clusterLanuchOptions);
 console.log("get link");
   await cluster.task(async ({ page, data: url }) => {
 	  console.log("start cluster task");
-    await page.goto(url, {waitUntil: 'domcontentloaded'});//networkidle2
-	  //load,domcontentloaded,networkidle0,networkidle2
+    await page.goto(url, {waitUntil: 'load'});//networkidle2
+	  //load,domcontentloaded(7sec),networkidle0,networkidle2
 	  console.log('taking screenshot');
     const screenshot = await page.screenshot();
       console.log('taking screenshot is done');
