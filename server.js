@@ -23,7 +23,7 @@ app.listen(PORT, () => {
 });
 
 
-
+(async () => {
 console.log('NewclusterLanuch');
 const launchOptions = {
     headless: 'new',
@@ -125,7 +125,7 @@ const cluster = await Cluster.launch(clusterLanuchOptions);
     maxConcurrency: 2,
   });*/
 
-
+ })();
 
 
 app.get("/test", async (req, res) => {
