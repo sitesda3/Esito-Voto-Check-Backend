@@ -1,12 +1,13 @@
-//const puppeteer = require("puppeteer-extra");
-//const StealthPlugin = require("puppeteer-extra-plugin-stealth");
+//const { addExtra } = require("puppeteer-extra");
+const puppeteer = require('puppeteer-extra');
+const StealthPlugin = require("puppeteer-extra-plugin-stealth");
 const { Cluster } = require("puppeteer-cluster");
 const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
 const path = require("path");
-
-//puppeteer.use(StealthPlugin());
+//const puppeteer = addExtra(vanillaPuppeteer);
+puppeteer.use(StealthPlugin());
 
 
 
@@ -83,6 +84,7 @@ const clusterLanuchOptions = {
     //skipDuplicateUrls: true,  // 不爬重复的url
     //monitor: true,  // 显示性能消耗
     timeout:800000,//milliseconds//300000
+    puppeteer,
     puppeteerOptions: launchOptions
 };            
             
