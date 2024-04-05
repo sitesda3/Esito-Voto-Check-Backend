@@ -142,9 +142,9 @@ const cluster = await Cluster.launch(clusterLanuchOptions);
 }
 
 
-console.log("get link");
+console.log("Get Request");
   await cluster.task(async ({ page, data: url }) => {
-	  console.log("start cluster task");
+	  console.log("Starting cluster task");
     await page.goto(url, {waitUntil: 'load'});//networkidle2
 	  //load,domcontentloaded(7sec),networkidle0,networkidle2
 	  console.log('taking screenshot');
@@ -178,7 +178,7 @@ const result = await cluster.execute('https://github.com/');
   await cluster.close();
 	console.log("Cluster is closed");
 return;
-
+        console.log("Request is finished");
 
   
 
