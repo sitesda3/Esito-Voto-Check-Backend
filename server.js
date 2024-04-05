@@ -1,6 +1,7 @@
 //const { addExtra } = require("puppeteer-extra");
 const puppeteer = require("puppeteer-extra");
 const StealthPlugin = require("puppeteer-extra-plugin-stealth");
+//const AdblockerPlugin = require('puppeteer-extra-plugin-adblocker');
 const { Cluster } = require("puppeteer-cluster");
 const express = require("express");
 const bodyParser = require("body-parser");
@@ -8,6 +9,7 @@ const app = express();
 const path = require("path");
 //const puppeteer = addExtra(vanillaPuppeteer);
 puppeteer.use(StealthPlugin());
+//puppeteer.use(AdblockerPlugin({ blockTrackers: true }));
 
 
 
