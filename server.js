@@ -1,5 +1,5 @@
 //const { addExtra } = require("puppeteer-extra");
-const puppeteer = require('puppeteer-extra');
+const puppeteer = require("puppeteer-extra");
 const StealthPlugin = require("puppeteer-extra-plugin-stealth");
 const { Cluster } = require("puppeteer-cluster");
 const express = require("express");
@@ -80,7 +80,7 @@ const launchOptions = {
 const clusterLanuchOptions = {
     concurrency: Cluster.CONCURRENCY_CONTEXT,//CONCURRENCY_BROWSER
     maxConcurrency: 3,
-    retryLimit: 1,   // 重试次数 0
+    retryLimit: 0,   // 重试次数 0
     //skipDuplicateUrls: true,  // 不爬重复的url
     //monitor: true,  // 显示性能消耗
     timeout:800000,//milliseconds//300000
