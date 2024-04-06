@@ -3024,65 +3024,6 @@ const preparePageForTests = async (page,userAgent) => {
 
 
 console.log('NewclusterLanuch');
-const launchOptions = {
-    headless: true,
-    //devtools: false,
-    ignoreHTTPSErrors: true,        // 忽略证书错误
-    //waitUntil: 'networkidle2',
-    timeout: 0,
-    defaultViewport:{
-        width: 1920,
-        height: 1080
-        //width: 640,
-        //height: 480
-    },
-    /*args: [
-        '--disable-gpu',
-        '--disable-dev-shm-usage',
-        '--disable-web-security',
-        '--disable-xss-auditor',    // 关闭 XSS Auditor
-        '--no-zygote',
-        '--no-sandbox',
-        '--disable-setuid-sandbox',
-        '--allow-running-insecure-content',     // 允许不安全内容
-        '--disable-webgl',
-        '--disable-popup-blocking',
-        //'--proxy-server=http://127.0.0.1:8080'      // 配置代理
-    ],*/
-    args: [
-        '--no-sandbox',
-        '--disable-web-security',
-        '--disable-gpu',
-        '--disable-dev-shm-usage',
-        '--disable-setuid-sandbox',
-        '--allow-running-insecure-content',
-        '--no-first-run',
-        '--no-zygote',
-        //'--deterministic-fetch',
-        //'--disable-features=IsolateOrigins',
-        //'--disable-site-isolation-trials',
-        '--shm-size=500mb',
-        //'--disable-infobars',
-        //'--window-size=1366,768'
-         //'--single-process',
-    ],
-    //"executablePath": "Chromium_OSX.app/Contents/MacOS/Chromium",       // 配置chromium路径
-
-};        
-const clusterLanuchOptions = {
-    concurrency: Cluster.CONCURRENCY_CONTEXT,//CONCURRENCY_BROWSER
-    maxConcurrency: 3,
-    retryLimit: 0,   // 重试次数
-    //skipDuplicateUrls: true,  // 不爬重复的url
-    //monitor: true,  // 显示性能消耗
-    timeout:800000,//milliseconds//300000
-    puppeteerOptions: launchOptions
-};            
-            
-const cluster = await Cluster.launch(/*{
-        concurrency: Cluster.CONCURRENCY_BROWSER,
-        maxConcurrency: 4,
-    }*/clusterLanuchOptions);
 
     // setup the function to be executed for each request
     await cluster.task(async ({ page, data, worker}) => {
