@@ -179,7 +179,6 @@ return;
 
 
 //process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
-const port = process.env.PORT || 4000;//8080
 //const psql = "postgres://exdatabase_user:qklrKQWTmbC2HC8UUYorHLMqAZPA1Gok@dpg-cnpnsrv109ks738pio00-a.oregon-postgres.render.com/exdatabase";
 const DomainHosting = "onrender.com";
 //const dotenv = require("dotenv");
