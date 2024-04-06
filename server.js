@@ -154,7 +154,7 @@ return;
 });
 
 
- })();
+// })();
 
 
 
@@ -242,7 +242,7 @@ console.log(year + "-" + month + "-" + date + " " + hours + ":" + minutes + ":" 
 //process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 //const devices = require('puppeteer/DeviceDescrtors');
 var isdebug = true;
-(async () => {
+//(async () => {
 
 try{
 var ThisSessionLocation;	
