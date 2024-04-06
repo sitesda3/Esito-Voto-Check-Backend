@@ -27,7 +27,7 @@ app.listen(PORT, () => {
 console.log('NewclusterLanuch');
 const launchOptions = {
     headless: 'new',
-    //devtools: false,
+    devtools: false,//
     ignoreHTTPSErrors: true,        // 忽略证书错误
     //waitUntil: 'networkidle2',
     timeout: 0,
