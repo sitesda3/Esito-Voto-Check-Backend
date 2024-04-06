@@ -27,6 +27,7 @@ app.listen(PORT, () => {
 console.log('NewclusterLanuch');
 const launchOptions = {
     headless: 'new',
+    ignoreDefaultArgs: true, // needed ?
     devtools: false,//
     ignoreHTTPSErrors: true,        // 忽略证书错误
     //waitUntil: 'networkidle2',
@@ -52,7 +53,7 @@ const launchOptions = {
         '--disable-popup-blocking',
         //'--proxy-server=http://127.0.0.1:8080'      // 配置代理
     ],*/
-    args: [
+    args2: [
         '--no-sandbox',
         '--disable-web-security',
        // '--disable-xss-auditor',//
@@ -103,6 +104,31 @@ const launchOptions = {
   '--use-mock-keychain'*/
 	    
     ],
+	args: [
+      /* TODO : https://peter.sh/experiments/chromium-command-line-switches/
+        there is still a whole bunch of stuff to disable
+      */
+        //'--crash-test', // Causes the browser process to crash on startup, useful to see if we catch that correctly
+        // not idea if those 2 aa options are usefull with disable gl thingy
+        '--disable-canvas-aa', // Disable antialiasing on 2d canvas
+        '--disable-2d-canvas-clip-aa', // Disable antialiasing on 2d canvas clips
+        '--disable-gl-drawing-for-tests', // BEST OPTION EVER! Disables GL drawing operations which produce pixel output. With this the GL output will not be correct but tests will run faster.
+        '--disable-dev-shm-usage', // ???
+        '--no-zygote', // wtf does that mean ?
+        '--use-gl=swiftshader', // better cpu usage with --use-gl=desktop rather than --use-gl=swiftshader, still needs more testing.
+        '--enable-webgl',
+        '--hide-scrollbars',
+        '--mute-audio',
+        '--no-first-run',
+        '--disable-infobars',
+        '--disable-breakpad',
+        //'--ignore-gpu-blacklist',
+        '--window-size=1280,1024', // see defaultViewport
+        '--user-data-dir=./chromeData', // created in index.js, guess cache folder ends up inside too.
+        '--no-sandbox', // meh but better resource comsuption
+        '--disable-setuid-sandbox'] // same
+        // '--proxy-server=socks5://127.0.0.1:9050' // tor if needed
+		],
   executablePath:
         process.env.NODE_ENV === "production"
           ? process.env.PUPPETEER_EXECUTABLE_PATH
