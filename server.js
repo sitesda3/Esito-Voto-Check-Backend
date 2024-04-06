@@ -124,7 +124,7 @@ const launchOptions = {
         '--disable-breakpad',
         //'--ignore-gpu-blacklist',
         '--window-size=1280,1024', // see defaultViewport
-        '--user-data-dir=./chromeData', // created in index.js, guess cache folder ends up inside too.
+        //'--user-data-dir=./chromeData', // created in index.js, guess cache folder ends up inside too.
         '--no-sandbox', // meh but better resource comsuption
         '--disable-setuid-sandbox' // same
         // '--proxy-server=socks5://127.0.0.1:9050' // tor if needed
