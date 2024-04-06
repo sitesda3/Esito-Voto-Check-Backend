@@ -3,7 +3,7 @@
 //const { addExtra } = require("puppeteer-extra");
 const puppeteer = require("puppeteer-extra");
 const StealthPlugin = require("puppeteer-extra-plugin-stealth");
-//const AdblockerPlugin = require('puppeteer-extra-plugin-adblocker');
+//const AdblockerPlugin = require("puppeteer-extra-plugin-adblocker");
 const { Cluster } = require("puppeteer-cluster");
 const express = require("express");
 const bodyParser = require("body-parser");
@@ -14,14 +14,14 @@ puppeteer.use(StealthPlugin());
 //puppeteer.use(AdblockerPlugin({ blockTrackers: true }));
 
 
-const request = require('request')
-const fetch = require('node-fetch')
-var mysql = require('mysql');
+const request = require("request")
+const fetch = require("node-fetch")
+var mysql = require("mysql");
 const { Pool } = require("pg");
-//import fetch from 'node-fetch';
+//import fetch from "node-fetch";
 //const fetch = (url) => import('node-fetch').then(({default: fetch}) => fetch(url));
-//const validUrl = require('valid-url')
-//const puppeteer = require('puppeteer');
+//const validUrl = require("valid-url")
+//const puppeteer = require("puppeteer");
 
 
 
