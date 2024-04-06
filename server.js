@@ -192,7 +192,7 @@ console.log("Get Request");
   //cluster.queue('http://www.wikipedia.org/');
   // many more pages
 try {
-const result = await cluster.execute('https://github.com/');
+const result = await cluster.execute('https://fast.com/fr/');
 	    console.log("sending screenshot");
         res.end(result, 'binary');
 	console.log("screenshot is sent");
