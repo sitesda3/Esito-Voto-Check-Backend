@@ -197,6 +197,7 @@ const result = await cluster.execute('https://fast.com/fr/');
 	    res.statusCode = 200;
     res.setHeader("Content-Type", "image/png");
         res.send(result, 'binary');
+	res.end();
 	console.log("screenshot is sent");
     } catch (err) {
 	console.log("screenshot ERROR:",err);
