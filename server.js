@@ -205,8 +205,8 @@ const result = await cluster.execute('https://fast.com/fr/');
         // Handle crawling error
     }
 	console.log("Closing cluster");
-  await cluster.idle();
-  await cluster.close();
+ // await cluster.idle();
+//  await cluster.close();
 	console.log("Cluster is closed");
 return;
         console.log("Request is finished");
