@@ -26,7 +26,7 @@ app.listen(PORT, () => {
 (async () => {
 console.log('NewclusterLanuch');
 const launchOptions = {
-    headless: 'new',
+    headless: true,//'new'
     //ignoreDefaultArgs: true, // needed ?
     devtools: false,//
     ignoreHTTPSErrors: true,        // 忽略证书错误
