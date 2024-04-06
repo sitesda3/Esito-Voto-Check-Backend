@@ -34,8 +34,10 @@ const launchOptions = {
     defaultViewport:{
         //width: 1920,
         //height: 1080
-        width: 640,
-        height: 480
+	width: 1280,
+        height: 882
+       // width: 640,
+       // height: 480
     },
     /*args: [
         '--disable-gpu',
