@@ -140,7 +140,7 @@ const clusterLanuchOptions = {
     maxConcurrency: 3,
     retryLimit: 0,   // 重试次数 0
     //skipDuplicateUrls: true,  // 不爬重复的url
-    //monitor: true,  // 显示性能消耗
+    monitor: true,  // 显示性能消耗
     timeout:800000,//milliseconds//300000
     puppeteer,
     puppeteerOptions: launchOptions
