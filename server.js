@@ -30,9 +30,11 @@ const { Pool } = require("pg");
 app.use(bodyParser.json());
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Server started on port ${PORT}`);
-});
+console.log('starting server... port: ',port);
+const server = app.listen(port, function(err){
+    if (err) {console.log("Error in server setup: ",err);console.log("Server restarting...");process.exit(0);}else{
+    console.log("Server listening on Port ", port);}
+})
 
 
 (async () => {
@@ -197,13 +199,9 @@ const DbConfig={
   timezone : '+00:00'
   //debug: true
     };
-console.log('starting server... port: ',port);
-const server = app.listen(port, function(err){
-    if (err) {console.log("Error in server setup: ",err);console.log("Server restarting...");process.exit(0);}else{
-    console.log("Server listening on Port ", port);}
-})
 
-//const server = app.listen(port, () => console.log(`Example app listening on port ${port}!`));
+
+
 
 server.keepAliveTimeout = 120 * 1000;//2minutes
 server.headersTimeout = 120 * 1000;//2minutes
@@ -11584,21 +11582,8 @@ console.log('end4');
 // Set the timeout for a request to 1sec
 //server.timeout = 1000;
 console.log('end5');
-//})(); //end async ()
-/*app.listen(port, function() {
-    console.log('App listening on port ' + port)
-})
-*/
-/*app.listen(port, function(err){
-    if (err) {console.log("Error in server setup: ",err);console.log("Server restarting...");process.exit(0);}else{
-    console.log("Server listening on Port ", port);}
-})*/
-/*app.listen(port, () => {
-   console.log('App listening on port ', port);
-}).on('error', (e) => {
-   console.log('Error happened: ', e.message);
-process.exit();   
-});*/
+
+	
 })(); //end async ()
 
 
